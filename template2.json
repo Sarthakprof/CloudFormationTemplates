@@ -1,0 +1,40 @@
+{
+      "Description": "S3 bucket created using CloudFormation",
+      
+          "Resources": {
+      
+         "MyWeb123" : {
+            "Type" : "AWS::EC2::Instance", 
+              "Properties" : {
+                  "ImageId" : "ami-009d6802948d06e52",
+                   "InstanceType" : "t2.micro",
+                   "SecurityGroups" : {"Ref" : "WebSecurityGroup"},
+                   "KeyName" : "Virginia",
+                   "Tags" : [{
+                      "Key" : "Name",
+                      "Value" : "MyWeb123"
+                   }]
+              }			 
+       
+        },
+    "WebSecurityGroup" : {
+     "Type" : "AWS::EC2::SecurityGroup",
+          "Properties" : {
+               "GroupDescription" : "allow HTTP Access and SSH",
+                "SecurityGroupIngress" : [
+         {
+             "IpProtocol" : "tcp",
+             "FromPort" : "80",
+             "ToPort" : "80",
+             "CidrIp" : "0.0.0.0/0"
+         },{
+             "IpProtocol" : "tcp",
+             "FromPort" : "22",
+             "ToPort" : "22",
+             "CidrIp" : "0.0.0.0/0"
+         }
+     ]
+ }
+    }
+       
+}
